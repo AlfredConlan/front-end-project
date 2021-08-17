@@ -1,24 +1,31 @@
-Daily Fantasy Football
+# Covid 19 Info
 
-This site will pull projected points data for all NFL players and allow users to create a roster based on the players projected points.
-
-TECH USED
-Bootstrap
-Several API calls 2x w/ AJAX
-Some styling elemnts w/ jQueryUI
+This project aims to aggregate **Covid 19** in a useful and meaningful way. We will attempt to insure that all sources are legitimate and accurate.
 
 
-We will get API data from LIST SOURCES
-Yahoo
-SportRadar
-Fantasy Nerds
-ESPN
-Fantasy Football Data Pros
+## Tech Used
 
+ - Bootstrap
+ - API Calls using AJAX
+ - JQuery UI elements
 
-SCREENSHOTS
+## APIs That We Pull Data From
 
-Group Members:
+ - covid-api.mmediagroup.fr/v1
+ - api.covid19api.com
+ - covidtrackerapi.bsg.ox.ac.uk (University of Oxford)
+ - covid-19.dataflowkit.com
+
+## Screenshots Coming Soon
+
+![enter image description here](https://images.unsplash.com/photo-1614332287897-cdc485fa562d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80)
+
+## Team Members
+
 Timothy Johns
-Al Conlan
+
 Eric Fricke
+
+Al Conlan
+
+Austin Castaneda
