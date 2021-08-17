@@ -36,7 +36,7 @@ function callOxford() {
   });
 }
 
-// Default call to Oxford which lists daily info for a selected country
+// Default call to Oxford which lists policy actions and overviews for a selected country
 function callOxford() {
   let catObject = $.ajax({
     url: "https://covidtrackerapi.bsg.ox.ac.uk/api/v2/stringency/actions/usa/2021-08-5",
