@@ -6,7 +6,7 @@ function callCovid19API() {
     dataType: "json",
     success: function (result) {},
   }).done(function (obj) {
-    console.log(obj);
+    console.log("covid19API.com: ", obj);
     callMmediaGroup();
   });
 }
@@ -19,7 +19,7 @@ function callMmediaGroup() {
     dataType: "json",
     success: function (result) {},
   }).done(function (obj) {
-    console.log(obj);
+    console.log("mmediagroup.fr: ", obj);
     callOxford();
   });
 }
@@ -32,7 +32,7 @@ function callOxford() {
     dataType: "json",
     success: function (result) {},
   }).done(function (obj) {
-    console.log(obj);
+    console.log("Oxford: ", obj);
   });
 }
 
