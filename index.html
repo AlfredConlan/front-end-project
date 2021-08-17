@@ -4,27 +4,99 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="./style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
     <script src="./main.js"></script>
     <title>Covid 19</title>
   </head>
-  <body onload="callCovid19API()">
-    <iframe
-      src="https://covid-19.dataflowkit.com/assets/widget/c19-widget-dark.html"
-      frameborder="0"
-      scrolling="no"
-      width="450"
-      height="250"
-    >
-    </iframe>
-    <iframe
-      src="https://covid-19.dataflowkit.com/assets/widget/c19-top-widget-dark.html"
-      width="800"
-      height="540"
-      frameborder="0"
-    ></iframe>
+  <body onload="callCovid19API(), getCountries(), populateStatesDropDown()">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col p-5">
+          <h1>Covid As It Stands</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <iframe
+            src="https://covid-19.dataflowkit.com/assets/widget/covid-19.html"
+            frameborder="0"
+            scrolling="no"
+            width="250"
+            height="250"
+          >
+          </iframe>
+        </div>
+        <div class="col bg-primary text-white">
+          <h4 class="m-4">Choose A Country Or State For More Information</h4>
+          <form>
+            <div class="mb-3">
+              <select class="form-select" id="country-dropdown" aria-label="Default select example">
+                <option selected>Choose a Country</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="name">OR</label>
+              <select class="form-select" id="states-dropdown" aria-label="Default select example">
+                <option selected>Choose a State</option>
+              </select>
+            </div>
+            <div class="mb-4">
+              <label class="form-label" for="password">Type of Information</label>
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Please choose a country or state</option>
+              </select>
+            </div>
+            <button class="btn btn-warning mb-3" type="submit">Get Info</button>
+          </form>
+        </div>
+        <div class="col">
+          <iframe
+            src="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/vaccine-finder-widget.html"
+            scrolling="no"
+            height="400"
+            frameborder="0"
+            width="280"
+            frameborder="0"
+            title="Vaccine Finder Widget"
+            style="overflow: hidden"
+          >
+          </iframe>
+        </div>
+      </div>
+      <div class="row pt-5">
+        <div class="col">
+          <iframe
+            src="https://public.domo.com/cards/YE040"
+            width="600"
+            height="400"
+            marginheight="0"
+            marginwidth="0"
+            frameborder="0"
+          ></iframe>
+        </div>
+        <div class="col">
+          <iframe
+            src="https://public.domo.com/cards/31O7r"
+            width="600"
+            height="400"
+            marginheight="0"
+            marginwidth="0"
+            frameborder="0"
+          ></iframe>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
