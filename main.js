@@ -92,9 +92,9 @@ function populateStatesDropDown() {
   }
 }
 //Function for jQueryUI Accordian Menu
-$( function() {
-  $( "#accordion" ).accordion();
-} );
+$(function () {
+  $("#accordion").accordion();
+});
 // List of states
 const states = [
   "Alaska",
