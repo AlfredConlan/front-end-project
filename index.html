@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-   
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -23,8 +23,9 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);</script>
+      google.charts.load("current", { packages: ["corechart"] });
+      google.charts.setOnLoadCallback(drawChart);
+    </script>
     <title>Covid 19</title>
   </head>
   <body onload="populateStatesDropDown()">
@@ -46,8 +47,7 @@
           </iframe>
         </div>
         <div class="col grow bg-primary text-white">
-          
-           <h4 class="m-5">Choose A State For More Information</h4>
+          <h4 class="m-5">Choose A State For More Information</h4>
           <!-- <div class="mb-3">
               <select class="form-select" id="country-dropdown" aria-label="Default select example">
                 <option selected>Choose a Country</option>
@@ -66,7 +66,7 @@
             </div> -->
           <button class="btn btn-warning mb-3" onclick="showStateInfo()">Get Info</button>
         </div>
-        
+
         <div class="col flex-absolute-center">
           <iframe
             class=""
@@ -83,32 +83,30 @@
         </div>
       </div>
       <div class="row pt-5" id="accordion-row" hidden>
-      <div class="flex pt-5">
-        <div class="col-12">
-          <div id="accordion">
-            <h3>Cases</h3>
-            <div class="row" id="stateDiv">
-              <!-- State info inserted dynamically here -->
-            </div>
-          <h3>US Cases</h3>
-            <div>
-              <p>
-                US Positive test data - call or hard code
-              </p>
-            </div>
-            <h3>Travel Advisories</h3>
-            <div>
-              <p>Find generic US travel advisory info and paste here</p>
-              <ul>
-                <li>List item one</li>
-                <li>List item two</li>
-                <li>List item three</li>
-              </ul>
-            </div>
+        <div class="flex pt-5">
+          <div class="col-12">
+            <div id="accordion">
+              <h3>Cases</h3>
+              <div class="row" id="stateDiv">
+                <!-- State info inserted dynamically here -->
+              </div>
+              <h3>US Cases</h3>
+              <div>
+                <p>US Positive test data - call or hard code</p>
+              </div>
+              <h3>Travel Advisories</h3>
+              <div>
+                <p>Find generic US travel advisory info and paste here</p>
+                <ul>
+                  <li>List item one</li>
+                  <li>List item two</li>
+                  <li>List item three</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-     
+      </div>
       <div class="flex pt-5">
         <div class="col">
           <iframe
@@ -131,8 +129,7 @@
           ></iframe>
         </div>
       </div>
-      <!--<div id="curve_chart" style="width: 900px; height: 500px"></div>-->
-    </div>
+      <div id="curve_chart" style="width: 900px; height: 500px"></div>
     </div>
   </body>
 </html>
