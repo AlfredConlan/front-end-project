@@ -1,40 +1,40 @@
 // Default call to covid19api.com which lists all the current routes available with details on each
-function callCovid19API() {
-  let Object = $.ajax({
-    url: "https://api.covid19api.com/",
-    contentType: "application/json",
-    dataType: "json",
-    success: function (result) {},
-  }).done(function (obj) {
-    console.log("covid19API.com: ", obj);
-    callMmediaGroup();
-  });
-}
+// function callCovid19API() {
+//   let Object = $.ajax({
+//     url: "https://api.covid19api.com/",
+//     contentType: "application/json",
+//     dataType: "json",
+//     success: function (result) {},
+//   }).done(function (obj) {
+//     console.log("covid19API.com: ", obj);
+//     callMmediaGroup();
+//   });
+// }
 
-// Default call to mmediagroup.fr which lists current cases for different countries
-function callMmediaGroup() {
-  let Object = $.ajax({
-    url: "https://covid-api.mmediagroup.fr/v1/cases",
-    contentType: "application/json",
-    dataType: "json",
-    success: function (result) {},
-  }).done(function (obj) {
-    console.log("mmediagroup.fr: ", obj);
-    callOxford();
-  });
-}
+// // Default call to mmediagroup.fr which lists current cases for different countries
+// function callMmediaGroup() {
+//   let Object = $.ajax({
+//     url: "https://covid-api.mmediagroup.fr/v1/cases",
+//     contentType: "application/json",
+//     dataType: "json",
+//     success: function (result) {},
+//   }).done(function (obj) {
+//     console.log("mmediagroup.fr: ", obj);
+//     callOxford();
+//   });
+// }
 
-// Default call to Oxford which lists policy actions and overviews for a selected country
-function callOxford() {
-  let Object = $.ajax({
-    url: "https://covidtrackerapi.bsg.ox.ac.uk/api/v2/stringency/actions/usa/2021-08-5",
-    contentType: "application/json",
-    dataType: "json",
-    success: function (result) {},
-  }).done(function (obj) {
-    console.log("Oxford: ", obj);
-  });
-}
+// // Default call to Oxford which lists policy actions and overviews for a selected country
+// function callOxford() {
+//   let Object = $.ajax({
+//     url: "https://covidtrackerapi.bsg.ox.ac.uk/api/v2/stringency/actions/usa/2021-08-5",
+//     contentType: "application/json",
+//     dataType: "json",
+//     success: function (result) {},
+//   }).done(function (obj) {
+//     console.log("Oxford: ", obj);
+//   });
+// }
 
 // Populate the States Dropdown
 function populateStatesDropDown() {
@@ -59,7 +59,7 @@ function showStateInfo() {
     dataType: "json",
     success: function (result) {},
   }).done(function (obj) {
-    console.log("CDC: ", obj);
+    //console.log("CDC: ", obj);
 
     filteredByLatestDate = filterCDCByLatestDate(obj);
 
