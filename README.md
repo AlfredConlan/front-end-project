@@ -1,15 +1,4 @@
-# Covid 19 Info
-
-MIC CHECK ONE TWO MIC CHECK ONE TWO
-Another mic check for dre
-This project aims to aggregate **Covid 19** in a useful and meaningful way. We will attempt to insure that all sources are legitimate and accurate.
-
-
-## Tech Used
-
- - Bootstrap
- - API Calls using AJAX
- - JQuery UI elements
+DERP DERP DERP DERP DERP DERP DERP
 
 ## APIs That We Pull Data From
 
