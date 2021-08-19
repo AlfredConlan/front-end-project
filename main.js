@@ -61,7 +61,7 @@ function showStateInfo() {
   }).done(function (obj) {
     //console.log("CDC: ", obj);
 
-    filteredByLatestDate = filterCDCByLatestDate(obj);
+    let filteredByLatestDate = filterCDCByLatestDate(obj);
 
     const stateDiv = document.getElementById("stateDiv");
     stateDiv.innerHTML = "";
@@ -95,6 +95,11 @@ function showStateInfo() {
     newDeathsCol.className = "col p-2";
     newDeathsCol.innerHTML = "<h5>New Deaths: </h5>" + Math.round(filteredByLatestDate[0].new_death);
     stateDiv.append(newDeathsCol);
+
+    // unhide the accordian
+    const accordianRow = document.getElementById("accordion-row");
+    accordianRow.hidden = false;
+    stateDiv.style = "height: 100px;";
   });
 }
 
@@ -121,7 +126,6 @@ $(function () {
 
 // List of states
 const states = [
-
   {
     name: "Alaska",
     id: "AK",
