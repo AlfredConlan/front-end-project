@@ -121,6 +121,7 @@ $(function () {
 
 // List of states
 const states = [
+
   {
     name: "Alaska",
     id: "AK",
