@@ -23,7 +23,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <title>Covid 19</title>
   </head>
-  <body onload="callCovid19API(), getCountries(), populateStatesDropDown()">
+  <body onload="callCovid19API(),  populateStatesDropDown()">
     <div class="container text-center">
       <div class="row">
         <div class="col p-5">
@@ -43,25 +43,23 @@
         </div>
         <div class="col bg-primary text-white">
           <h4 class="m-5">Choose A State For More Information</h4>
-          <form>
-            <!-- <div class="mb-3">
+          <!-- <div class="mb-3">
               <select class="form-select" id="country-dropdown" aria-label="Default select example">
                 <option selected>Choose a Country</option>
               </select>
             </div> -->
-            <div class="mb-5">
-              <select class="form-select" id="states-dropdown" aria-label="Default select example">
-                <option selected>Choose a State</option>
-              </select>
-            </div>
-            <!-- <div class="mb-4">
+          <div class="mb-5">
+            <select class="form-select" id="states-dropdown" aria-label="Default select example">
+              <option selected>Choose a State</option>
+            </select>
+          </div>
+          <!-- <div class="mb-4">
               <label class="form-label" for="password">Type of Information</label>
               <select class="form-select" aria-label="Default select example">
                 <option selected>Please choose a country or state</option>
               </select>
             </div> -->
-            <button class="btn btn-warning mb-3" type="submit">Get Info</button>
-          </form>
+          <button class="btn btn-warning mb-3" onclick="showStateInfo()">Get Info</button>
         </div>
         <div class="col">
           <iframe
@@ -78,12 +76,12 @@
           </iframe>
         </div>
       </div>
-      <div class="row pt-5" hidden="true">
+      <div class="row pt-5">
         <div class="col-12">
           <div id="accordion">
             <h3>Cases</h3>
-            <div>
-              <p>Info from COVID19api state specific</p>
+            <div class="row" id="stateDiv">
+              <!-- State info inserted dynamically here -->
             </div>
             <h3>Chart</h3>
             <div>
