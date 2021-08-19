@@ -325,6 +325,25 @@ const states = [
   },
 ];
 
+//Function to build chart
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+    ['Date', 'Positives'],
+    ['1',  1000],
+    ['2',  1170],
+    ['3',  660],
+    ['4',  1030]
+  ]);
+
+  var options = {
+    title: 'COVID Positive Tests',
+    legend: { position: 'bottom' }
+  };
+
+  var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+  chart.draw(data, options);
+}
 // // Filter https://data.cdc.gov/resource/9mfq-cb36.json by state
 // function filterCDCByState(obj) {
 //   const selectedState = document.getElementById("states-dropdown").value;
