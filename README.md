@@ -2,7 +2,7 @@
 
 This project aims to aggregate **Covid 19** in a useful and meaningful way. We will attempt to insure that all sources are legitimate and accurate.
 
-
+(I AM ADDING STUFF THAT WILL MAKE A MERGE CONFLICT. )
 ## Tech Used
 
  - Bootstrap
