@@ -53,54 +53,55 @@ function populateStatesDropDown() {
 function showStateInfo() {
   const selectedState = document.getElementById("states-dropdown").value;
 
-  let Object = $.ajax({
-    url: "https://data.cdc.gov/resource/9mfq-cb36.json?state=" + selectedState,
-    contentType: "application/json",
-    dataType: "json",
-    success: function (result) {},
-  }).done(function (obj) {
-    //console.log("CDC: ", obj);
+  fetch("https://data.cdc.gov/resource/9mfq-cb36.json?state=" + selectedState)
+    .then(function (response) {
+      if (response.status !== 200) {
+        console.log("Looks like there was a problem. Status Code: " + response.status);
+        return;
+      }
 
-    let filteredByLatestDate = filterCDCByLatestDate(obj);
+      // Examine the text in the response
+      response.json().then(function (data) {
+        let filteredByLatestDate = filterCDCByLatestDate(data);
 
-    const stateDiv = document.getElementById("stateDiv");
-    stateDiv.innerHTML = "";
+        const stateDiv = document.getElementById("stateDiv");
 
-    // const dateCol = document.createElement("div");
-    // dateCol.className = "p-2";
-    // dateCol.innerHTML = "<h5>Date Reported: " + filteredByLatestDate[0].submission_date + "</h5>";
-    // stateDiv.append(dateCol);
+        stateDiv.innerHTML = "";
 
-    const stateCol = document.createElement("div");
-    stateCol.className = "col p-2";
-    stateCol.innerHTML = "<h5>State: </h5>" + filteredByLatestDate[0].state;
-    stateDiv.append(stateCol);
+        const stateCol = document.createElement("div");
+        stateCol.className = "col p-2";
+        stateCol.innerHTML = "<h5>State: </h5>" + filteredByLatestDate[0].state;
+        stateDiv.append(stateCol);
 
-    const totalCasesCol = document.createElement("div");
-    totalCasesCol.className = "col p-2";
-    totalCasesCol.innerHTML = "<h5>Total Cases: </h5>" + filteredByLatestDate[0].tot_cases;
-    stateDiv.append(totalCasesCol);
+        const totalCasesCol = document.createElement("div");
+        totalCasesCol.className = "col p-2";
+        totalCasesCol.innerHTML = "<h5>Total Cases: </h5>" + filteredByLatestDate[0].tot_cases;
+        stateDiv.append(totalCasesCol);
 
-    const newCasesCol = document.createElement("div");
-    newCasesCol.className = "col p-2";
-    newCasesCol.innerHTML = "<h5>New Cases: </h5>" + Math.round(filteredByLatestDate[0].new_case);
-    stateDiv.append(newCasesCol);
+        const newCasesCol = document.createElement("div");
+        newCasesCol.className = "col p-2";
+        newCasesCol.innerHTML = "<h5>New Cases: </h5>" + Math.round(filteredByLatestDate[0].new_case);
+        stateDiv.append(newCasesCol);
 
-    const totalDeathsCol = document.createElement("div");
-    totalDeathsCol.className = "col p-2";
-    totalDeathsCol.innerHTML = "<h5>Total Deaths: </h5>" + filteredByLatestDate[0].tot_death;
-    stateDiv.append(totalDeathsCol);
+        const totalDeathsCol = document.createElement("div");
+        totalDeathsCol.className = "col p-2";
+        totalDeathsCol.innerHTML = "<h5>Total Deaths: </h5>" + filteredByLatestDate[0].tot_death;
+        stateDiv.append(totalDeathsCol);
 
-    const newDeathsCol = document.createElement("div");
-    newDeathsCol.className = "col p-2";
-    newDeathsCol.innerHTML = "<h5>New Deaths: </h5>" + Math.round(filteredByLatestDate[0].new_death);
-    stateDiv.append(newDeathsCol);
+        const newDeathsCol = document.createElement("div");
+        newDeathsCol.className = "col p-2";
+        newDeathsCol.innerHTML = "<h5>New Deaths: </h5>" + Math.round(filteredByLatestDate[0].new_death);
+        stateDiv.append(newDeathsCol);
 
-    // unhide the accordian
-    const accordianRow = document.getElementById("accordion-row");
-    accordianRow.hidden = false;
-    stateDiv.style = "height: 100px;";
-  });
+        // unhide the accordian
+        const accordianRow = document.getElementById("accordion-row");
+        accordianRow.hidden = false;
+        stateDiv.style = "height: 110px;";
+      });
+    })
+    .catch(function (err) {
+      console.log("Fetch Error :-S", err);
+    });
 }
 
 // Filter https://data.cdc.gov/resource/9mfq-cb36.json by latest date
@@ -332,19 +333,19 @@ const states = [
 //Function to build chart
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
-    ['Date', 'Positives'],
-    ['1',  1000],
-    ['2',  1170],
-    ['3',  660],
-    ['4',  1030]
+    ["Date", "Positives"],
+    ["1", 1000],
+    ["2", 1170],
+    ["3", 660],
+    ["4", 1030],
   ]);
 
   var options = {
-    title: 'COVID Positive Tests',
-    legend: { position: 'bottom' }
+    title: "COVID Positive Tests",
+    legend: { position: "bottom" },
   };
 
-  var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+  var chart = new google.visualization.LineChart(document.getElementById("curve_chart"));
 
   chart.draw(data, options);
 }
@@ -404,14 +405,17 @@ function getGraphData() {
 
   let getDataByStateAndDate = $.ajax({
     // Get an array of object by state from CDC API - Hardcode dates on presentation day
-    url: "https://data.cdc.gov/resource/9mfq-cb36.json?state=" + selectedState + "&$where=submission_date%20between%20%272021-08-10T12:00:00%27%20and%20%272021-08-19T14:00:00%27",
+    url:
+      "https://data.cdc.gov/resource/9mfq-cb36.json?state=" +
+      selectedState +
+      "&$where=submission_date%20between%20%272021-08-10T12:00:00%27%20and%20%272021-08-19T14:00:00%27",
     contentType: "application/json",
     dataType: "json",
     success: function (result) {},
   }).done(function (obj) {
     console.log("CDC: ", obj);
     // Use id "new_cases" to create an array of "new_case" with for loop
-  })
+  });
 }
 
 // Populate graph div id = curve_chart with new cases from for loop
