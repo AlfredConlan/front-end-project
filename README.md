@@ -1,15 +1,4 @@
-# Covid 19 Info
 
-This project aims to aggregate **Covid 19** in a useful and meaningful way. We will attempt to insure that all sources are legitimate and accurate.
-
-(I AM ADDING STUFF THAT WILL MAKE A MERGE CONFLICT. )
-## Tech Used
-
- - Bootstrap
- - API Calls using AJAX
- - JQuery UI elements
-
-## APIs That We Pull Data From
 
  - covid-api.mmediagroup.fr/v1
  - api.covid19api.com
