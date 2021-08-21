@@ -30,9 +30,7 @@ function showUSInfo() {
 
       // Examine the text in the response
       response.json().then(function (data) {
-        const stateDiv = document.getElementById("stateDiv");
         const countryDiv = document.getElementById("countryDiv");
-        const travelDiv = document.getElementById("travelDiv");
 
         countryDiv.innerHTML = "";
 
@@ -126,6 +124,46 @@ function showStateInfo() {
         stateDiv.style = "height: 110px;";
         countryDiv.style = "height: 110px;";
         travelDiv.style = "height: 260px;";
+      });
+    })
+    .catch(function (err) {
+      console.log("Fetch Error :-S", err);
+    });
+}
+
+function showPolicyInfo() {
+  // Get yesterdays date to pass into the URL
+  const today = new Date();
+  const yesterday = new Date(today); // Data in the API is current through the previous day
+  yesterday.setDate(yesterday.getDate() - 8);
+  let date = yesterday.getFullYear() + "-" + (yesterday.getMonth() + 1) + "-" + yesterday.getDate();
+
+  // Fetch the data
+  fetch("https://covidtrackerapi.bsg.ox.ac.uk/api/v2/stringency/actions/usa/" + date)
+    .then(function (response) {
+      if (response.status !== 200) {
+        console.log("Looks like there was a problem. Status Code: " + response.status);
+        return;
+      }
+
+      // Examine the text in the response
+      response.json().then(function (data) {
+        const policyDiv = document.getElementById("policyDiv");
+
+        policyDiv.innerHTML = "";
+
+        for (let i = 0; i < data.policyActions.length; i++) {
+          const descriptionCol = document.createElement("div");
+          descriptionCol.className = " m-auto w-50 text-start p-2";
+          descriptionCol.innerHTML =
+            "<b>" +
+            data.policyActions[i].policy_type_display +
+            ": </b>" +
+            data.policyActions[i].policy_value_display_field;
+          policyDiv.append(descriptionCol);
+        }
+
+        policyDiv.style = "height: 500px;";
       });
     })
     .catch(function (err) {
