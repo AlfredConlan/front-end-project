@@ -19,7 +19,6 @@ function showUSInfo() {
   const yesterday = new Date(today); // Data in the API is current through the previous day
   yesterday.setDate(yesterday.getDate() - 1);
   let date = yesterday.getFullYear() + "-" + (yesterday.getMonth() + 1) + "-" + yesterday.getDate();
-  console.log(date);
 
   // Fetch the data
   fetch("https://covidtrackerapi.bsg.ox.ac.uk/api/v2/stringency/actions/usa/" + date)
@@ -31,8 +30,6 @@ function showUSInfo() {
 
       // Examine the text in the response
       response.json().then(function (data) {
-        console.log("Oxford: ", data);
-
         const stateDiv = document.getElementById("stateDiv");
         const countryDiv = document.getElementById("countryDiv");
         const travelDiv = document.getElementById("travelDiv");

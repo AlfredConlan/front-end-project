@@ -46,3 +46,10 @@ h1 {
     align-items: center;
     justify-content: center;
 }
+
+/* Used for testing */
+.show-borders {
+    border-color: red;
+    border-style: solid;
+    border-width: 2px;
+}
