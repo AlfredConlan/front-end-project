@@ -50,7 +50,9 @@ function showUSInfo() {
 
         const newDeathsCol = document.createElement("div");
         newDeathsCol.className = "col p-2";
-        newDeathsCol.innerHTML = "<h5>Stringency Level: </h5>" + data.stringencyData.stringency;
+        newDeathsCol.innerHTML =
+          "<h5><a href='https://ourworldindata.org/grapher/covid-stringency-index' target='_blank'>Stringency Level*:</a></h5>" +
+          data.stringencyData.stringency;
         countryDiv.append(newDeathsCol);
       });
     })
