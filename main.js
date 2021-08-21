@@ -1,40 +1,61 @@
 // Default call to covid19api.com which lists all the current routes available with details on each
-// function callCovid19API() {
-//   let Object = $.ajax({
-//     url: "https://api.covid19api.com/",
-//     contentType: "application/json",
-//     dataType: "json",
-//     success: function (result) {},
-//   }).done(function (obj) {
-//     console.log("covid19API.com: ", obj);
-//     callMmediaGroup();
-//   });
-// }
+function callCovid19API() {
+  fetch("https://api.covid19api.com/")
+    .then(function (response) {
+      if (response.status !== 200) {
+        console.log("Looks like there was a problem. Status Code: " + response.status);
+        return;
+      }
 
-// // Default call to mmediagroup.fr which lists current cases for different countries
-// function callMmediaGroup() {
-//   let Object = $.ajax({
-//     url: "https://covid-api.mmediagroup.fr/v1/cases",
-//     contentType: "application/json",
-//     dataType: "json",
-//     success: function (result) {},
-//   }).done(function (obj) {
-//     console.log("mmediagroup.fr: ", obj);
-//     callOxford();
-//   });
-// }
+      // Examine the text in the response
+      response.json().then(function (data) {
+        console.log("covid19API.com: ", data);
+        callMmediaGroup();
+      });
+    })
+    .catch(function (err) {
+      console.log("Fetch Error :-S", err);
+    });
+}
 
-// // Default call to Oxford which lists policy actions and overviews for a selected country
-// function callOxford() {
-//   let Object = $.ajax({
-//     url: "https://covidtrackerapi.bsg.ox.ac.uk/api/v2/stringency/actions/usa/2021-08-5",
-//     contentType: "application/json",
-//     dataType: "json",
-//     success: function (result) {},
-//   }).done(function (obj) {
-//     console.log("Oxford: ", obj);
-//   });
-// }
+// Default call to mmediagroup.fr which lists current cases for different countries
+function callMmediaGroup() {
+  fetch("https://covid-api.mmediagroup.fr/v1/cases")
+    .then(function (response) {
+      if (response.status !== 200) {
+        console.log("Looks like there was a problem. Status Code: " + response.status);
+        return;
+      }
+
+      // Examine the text in the response
+      response.json().then(function (data) {
+        console.log("mmediagroup.fr: ", data);
+        callOxford();
+      });
+    })
+    .catch(function (err) {
+      console.log("Fetch Error :-S", err);
+    });
+}
+
+// Default call to Oxford which lists policy actions and overviews for a selected country
+function callOxford() {
+  fetch("https://covidtrackerapi.bsg.ox.ac.uk/api/v2/stringency/actions/usa/2021-08-5")
+    .then(function (response) {
+      if (response.status !== 200) {
+        console.log("Looks like there was a problem. Status Code: " + response.status);
+        return;
+      }
+
+      // Examine the text in the response
+      response.json().then(function (data) {
+        console.log("Oxford: ", data);
+      });
+    })
+    .catch(function (err) {
+      console.log("Fetch Error :-S", err);
+    });
+}
 
 // Populate the States Dropdown
 function populateStatesDropDown() {
