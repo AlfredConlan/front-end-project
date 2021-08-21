@@ -86,6 +86,8 @@ function showStateInfo() {
         let filteredByLatestDate = filterCDCByLatestDate(data);
 
         const stateDiv = document.getElementById("stateDiv");
+        const countryDiv = document.getElementById("countryDiv");
+        const travelDiv = document.getElementById("travelDiv");
 
         stateDiv.innerHTML = "";
 
@@ -117,7 +119,11 @@ function showStateInfo() {
         // unhide the accordian
         const accordianRow = document.getElementById("accordion-row");
         accordianRow.hidden = false;
+
+        // resize sections afer showing
         stateDiv.style = "height: 110px;";
+        countryDiv.style = "height: 150px;";
+        travelDiv.style = "height: 220px;";
       });
     })
     .catch(function (err) {
@@ -370,6 +376,7 @@ function drawChart() {
 
   chart.draw(data, options);
 }
+
 // // Filter https://data.cdc.gov/resource/9mfq-cb36.json by state
 // function filterCDCByState(obj) {
 //   const selectedState = document.getElementById("states-dropdown").value;
@@ -378,47 +385,6 @@ function drawChart() {
 //   return filteredObject;
 // }
 
-// // Get a list of countries
-// function getCountries() {
-//   let Object = $.ajax({
-//     url: "https://api.covid19api.com/countries",
-//     contentType: "application/json",
-//     dataType: "json",
-//     success: function (result) {},
-//   }).done(function (obj) {
-//     let countryObj = obj;
-//     populateCountryDropDown(countryObj);
-//   });
-// }
-
-// // Populate the Country Dropdown
-// function populateCountryDropDown(countryObj) {
-//   // order the countries by name
-//   countryObj.sort(function (a, b) {
-//     var nameA = a.Country.toUpperCase(); // ignore upper and lowercase
-//     var nameB = b.Country.toUpperCase(); // ignore upper and lowercase
-//     if (nameA < nameB) {
-//       return -1;
-//     }
-//     if (nameA > nameB) {
-//       return 1;
-//     }
-//     // names must be equal
-//     return 0;
-//   });
-
-//   //Fill in the dropdown
-//   for (let i = 0; i < countryObj.length; i++) {
-//     const countries = document.getElementById("country-dropdown");
-//     const optionTag = document.createElement("option");
-
-//     optionTag.value = countryObj[i].Iso2;
-//     optionTag.className = "country-list";
-//     optionTag.innerText = countryObj[i].Country;
-
-//     countries.append(optionTag);
-//   }
-// }
 // Graph Data Points
 function getGraphData() {
   // Add selectedState variable
