@@ -24,7 +24,7 @@
   <title>Covid 19</title>
 </head>
 
-<body onload="callCovid19API(), populateStatesDropDown()">
+<body onload="populateStatesDropDown()">
   <div class="container text-center">
     <div class="row">
       <div class="col p-5">
@@ -55,7 +55,7 @@
                 <option selected>Please choose a country or state</option>
               </select>
             </div> -->
-        <button class="btn btn-warning mb-3" onclick="showStateInfo()">Get Info</button>
+        <button class="btn btn-warning mb-3" onclick="showStateInfo(), showUSInfo()">Get Info</button>
       </div>
 
       <div class="col flex-absolute-center">
@@ -65,8 +65,8 @@
         </iframe>
       </div>
     </div>
-    <div class="row pt-5" id="accordion-row" hidden>
-      <div class="flex pt-5">
+    <div class="row " id="accordion-row" hidden>
+      <div class="flex pt-5 pb-5">
         <div class="col-12">
           <div id="accordion">
             <h3>Cases</h3>
@@ -98,7 +98,12 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <div id="curve_chart" style="width: 900px; height: 500px"></div>
 
+      </div>
+    </div>
     <div class="flex pt-5">
       <div class="col">
         <iframe src="https://public.domo.com/cards/YE040" width="450" height="400" marginheight="0" marginwidth="0"
@@ -109,7 +114,6 @@
           frameborder="0"></iframe>
       </div>
     </div>
-    <div id="curve_chart" style="width: 900px; height: 500px"></div>
   </div>
 </body>
 

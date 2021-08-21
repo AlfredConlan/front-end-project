@@ -1,62 +1,3 @@
-// Default call to covid19api.com which lists all the current routes available with details on each
-function callCovid19API() {
-  fetch("https://api.covid19api.com/")
-    .then(function (response) {
-      if (response.status !== 200) {
-        console.log("Looks like there was a problem. Status Code: " + response.status);
-        return;
-      }
-
-      // Examine the text in the response
-      response.json().then(function (data) {
-        console.log("covid19API.com: ", data);
-        callMmediaGroup();
-      });
-    })
-    .catch(function (err) {
-      console.log("Fetch Error :-S", err);
-    });
-}
-
-// Default call to mmediagroup.fr which lists current cases for different countries
-function callMmediaGroup() {
-  fetch("https://covid-api.mmediagroup.fr/v1/cases")
-    .then(function (response) {
-      if (response.status !== 200) {
-        console.log("Looks like there was a problem. Status Code: " + response.status);
-        return;
-      }
-
-      // Examine the text in the response
-      response.json().then(function (data) {
-        console.log("mmediagroup.fr: ", data);
-        callOxford();
-      });
-    })
-    .catch(function (err) {
-      console.log("Fetch Error :-S", err);
-    });
-}
-
-// Default call to Oxford which lists policy actions and overviews for a selected country
-function callOxford() {
-  fetch("https://covidtrackerapi.bsg.ox.ac.uk/api/v2/stringency/actions/usa/2021-08-5")
-    .then(function (response) {
-      if (response.status !== 200) {
-        console.log("Looks like there was a problem. Status Code: " + response.status);
-        return;
-      }
-
-      // Examine the text in the response
-      response.json().then(function (data) {
-        console.log("Oxford: ", data);
-      });
-    })
-    .catch(function (err) {
-      console.log("Fetch Error :-S", err);
-    });
-}
-
 // Populate the States Dropdown
 function populateStatesDropDown() {
   //Fill in the dropdown
@@ -71,6 +12,57 @@ function populateStatesDropDown() {
   }
 }
 
+// Get the data for the country and display it in the accordion
+function showUSInfo() {
+  // Get yesterdays date to pass into the URL
+  const today = new Date();
+  const yesterday = new Date(today); // Data in the API is current through the previous day
+  yesterday.setDate(yesterday.getDate() - 1);
+  let date = yesterday.getFullYear() + "-" + (yesterday.getMonth() + 1) + "-" + yesterday.getDate();
+  console.log(date);
+
+  // Fetch the data
+  fetch("https://covidtrackerapi.bsg.ox.ac.uk/api/v2/stringency/actions/usa/" + date)
+    .then(function (response) {
+      if (response.status !== 200) {
+        console.log("Looks like there was a problem. Status Code: " + response.status);
+        return;
+      }
+
+      // Examine the text in the response
+      response.json().then(function (data) {
+        console.log("Oxford: ", data);
+
+        const stateDiv = document.getElementById("stateDiv");
+        const countryDiv = document.getElementById("countryDiv");
+        const travelDiv = document.getElementById("travelDiv");
+
+        countryDiv.innerHTML = "";
+
+        const totalCasesCol = document.createElement("div");
+        totalCasesCol.className = "col p-2";
+        totalCasesCol.innerHTML =
+          "<h5>Total Cases: </h5>" + data.stringencyData.confirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        countryDiv.append(totalCasesCol);
+
+        const totalDeathsCol = document.createElement("div");
+        totalDeathsCol.className = "col p-2";
+        totalDeathsCol.innerHTML =
+          "<h5>Total Deaths: </h5>" + data.stringencyData.deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        countryDiv.append(totalDeathsCol);
+
+        const newDeathsCol = document.createElement("div");
+        newDeathsCol.className = "col p-2";
+        newDeathsCol.innerHTML = "<h5>Stringency Level: </h5>" + data.stringencyData.stringency;
+        countryDiv.append(newDeathsCol);
+      });
+    })
+    .catch(function (err) {
+      console.log("Fetch Error :-S", err);
+    });
+}
+
+// Get the data for the state and display it in the accordion
 function showStateInfo() {
   const selectedState = document.getElementById("states-dropdown").value;
 
@@ -98,22 +90,33 @@ function showStateInfo() {
 
         const totalCasesCol = document.createElement("div");
         totalCasesCol.className = "col p-2";
-        totalCasesCol.innerHTML = "<h5>Total Cases: </h5>" + filteredByLatestDate[0].tot_cases;
+        totalCasesCol.innerHTML =
+          "<h5>Total Cases: </h5>" + filteredByLatestDate[0].tot_cases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         stateDiv.append(totalCasesCol);
 
         const newCasesCol = document.createElement("div");
         newCasesCol.className = "col p-2";
-        newCasesCol.innerHTML = "<h5>New Cases: </h5>" + Math.round(filteredByLatestDate[0].new_case);
+        newCasesCol.innerHTML =
+          "<h5>New Cases: </h5>" +
+          Math.round(filteredByLatestDate[0].new_case)
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         stateDiv.append(newCasesCol);
 
         const totalDeathsCol = document.createElement("div");
         totalDeathsCol.className = "col p-2";
-        totalDeathsCol.innerHTML = "<h5>Total Deaths: </h5>" + filteredByLatestDate[0].tot_death;
+        totalDeathsCol.innerHTML =
+          "<h5>Total Deaths: </h5>" +
+          filteredByLatestDate[0].tot_death.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         stateDiv.append(totalDeathsCol);
 
         const newDeathsCol = document.createElement("div");
         newDeathsCol.className = "col p-2";
-        newDeathsCol.innerHTML = "<h5>New Deaths: </h5>" + Math.round(filteredByLatestDate[0].new_death);
+        newDeathsCol.innerHTML =
+          "<h5>New Deaths: </h5>" +
+          Math.round(filteredByLatestDate[0].new_death)
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         stateDiv.append(newDeathsCol);
 
         // unhide the accordian
@@ -122,8 +125,8 @@ function showStateInfo() {
 
         // resize sections afer showing
         stateDiv.style = "height: 110px;";
-        countryDiv.style = "height: 150px;";
-        travelDiv.style = "height: 220px;";
+        countryDiv.style = "height: 110px;";
+        travelDiv.style = "height: 260px;";
       });
     })
     .catch(function (err) {
@@ -406,3 +409,23 @@ function getGraphData() {
 }
 
 // Populate graph div id = curve_chart with new cases from for loop
+
+// // Default call to mmediagroup.fr returns world data if we need it
+// function callMmediaGroup() {
+//   fetch("https://covid-api.mmediagroup.fr/v1/cases")
+//     .then(function (response) {
+//       if (response.status !== 200) {
+//         console.log("Looks like there was a problem. Status Code: " + response.status);
+//         return;
+//       }
+
+//       // Examine the text in the response
+//       response.json().then(function (data) {
+//         console.log("mmediagroup.fr: ", data);
+//         callOxford();
+//       });
+//     })
+//     .catch(function (err) {
+//       console.log("Fetch Error :-S", err);
+//     });
+// }
