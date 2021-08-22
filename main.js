@@ -153,15 +153,12 @@ function showWorldInfo() {
 
       // Examine the text in the response
       response.json().then(function (data) {
-        console.log("mmediagroup.fr: ", data);
-
         const worldDiv = document.getElementById("worldDiv");
 
         worldDiv.innerHTML = "";
 
         // Convert the data to an array
         let values = Object.values(data);
-        console.log(values);
 
         // Add up the values
         let sumOfCases = 0;
@@ -171,9 +168,6 @@ function showWorldInfo() {
           sumOfCases = sumOfCases + values[i].All.confirmed;
           sumOfDeaths = sumOfDeaths + values[i].All.deaths;
         }
-
-        console.log("Cases: " + sumOfCases);
-        console.log("Deaths: " + sumOfDeaths);
 
         const totalCasesCol = document.createElement("div");
         totalCasesCol.className = "col p-2";
