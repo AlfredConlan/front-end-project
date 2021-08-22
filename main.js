@@ -159,16 +159,32 @@ function showWorldInfo() {
 
         worldDiv.innerHTML = "";
 
+        // Convert the data to an array
+        let values = Object.values(data);
+        console.log(values);
+
+        // Add up the values
+        let sumOfCases = 0;
+        let sumOfDeaths = 0;
+
+        for (let i = 0; i < values.length; i++) {
+          sumOfCases = sumOfCases + values[i].All.confirmed;
+          sumOfDeaths = sumOfDeaths + values[i].All.deaths;
+        }
+
+        console.log("Cases: " + sumOfCases);
+        console.log("Deaths: " + sumOfDeaths);
+
         const totalCasesCol = document.createElement("div");
         totalCasesCol.className = "col p-2";
         totalCasesCol.innerHTML =
-          "<h5>Total Cases: </h5>" + data.US.All.confirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          "<h5>Total Cases: </h5>" + sumOfCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         worldDiv.append(totalCasesCol);
 
         const totalDeathsCol = document.createElement("div");
         totalDeathsCol.className = "col p-2";
         totalDeathsCol.innerHTML =
-          "<h5>Total Deaths: </h5>" + data.US.All.deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          "<h5>Total Deaths: </h5>" + sumOfDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         worldDiv.append(totalDeathsCol);
 
         worldDiv.style = "height: 110px;";
