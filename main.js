@@ -12,58 +12,22 @@ function populateStatesDropDown() {
   }
 }
 
-// Get the data for the country and display it in the accordion
-function showUSInfo() {
-  // Get yesterdays date to pass into the URL
-  const today = new Date();
-  const yesterday = new Date(today); // Data in the API is current through the previous day
-  yesterday.setDate(yesterday.getDate() - 1);
-  let date = yesterday.getFullYear() + "-" + (yesterday.getMonth() + 1) + "-" + yesterday.getDate();
-
-  // Fetch the data
-  fetch("https://covidtrackerapi.bsg.ox.ac.uk/api/v2/stringency/actions/usa/" + date)
-    .then(function (response) {
-      if (response.status !== 200) {
-        console.log("Looks like there was a problem. Status Code: " + response.status);
-        return;
-      }
-
-      // Examine the text in the response
-      response.json().then(function (data) {
-        const countryDiv = document.getElementById("countryDiv");
-
-        countryDiv.innerHTML = "";
-
-        const totalCasesCol = document.createElement("div");
-        totalCasesCol.className = "col p-2";
-        totalCasesCol.innerHTML =
-          "<h5>Total Cases: </h5>" + data.stringencyData.confirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        countryDiv.append(totalCasesCol);
-
-        const totalDeathsCol = document.createElement("div");
-        totalDeathsCol.className = "col p-2";
-        totalDeathsCol.innerHTML =
-          "<h5>Total Deaths: </h5>" + data.stringencyData.deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        countryDiv.append(totalDeathsCol);
-
-        const newDeathsCol = document.createElement("div");
-        newDeathsCol.className = "col p-2";
-        newDeathsCol.innerHTML =
-          "<h5><a href='https://ourworldindata.org/grapher/covid-stringency-index' target='_blank'>Stringency Level*:</a></h5>" +
-          data.stringencyData.stringency;
-        countryDiv.append(newDeathsCol);
-      });
-    })
-    .catch(function (err) {
-      console.log("Fetch Error :-S", err);
-    });
-}
-
 // Get the data for the state and display it in the accordion
 function showStateInfo() {
   const selectedState = document.getElementById("states-dropdown").value;
 
-  fetch("https://data.cdc.gov/resource/9mfq-cb36.json?state=" + selectedState)
+  fetch("https://data.cdc.gov/resource/9mfq-cb36.json?state=" + selectedState, {
+    // After a number of calls, CDC was requesting header data
+
+    method: "GET", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json",
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  })
     .then(function (response) {
       if (response.status !== 200) {
         console.log("Looks like there was a problem. Status Code: " + response.status);
@@ -124,6 +88,90 @@ function showStateInfo() {
         stateDiv.style = "height: 110px;";
         countryDiv.style = "height: 110px;";
         travelDiv.style = "height: 260px;";
+      });
+    })
+    .catch(function (err) {
+      console.log("Fetch Error :-S", err);
+    });
+}
+
+// Get the data for the country and display it in the accordion
+function showUSInfo() {
+  // Get yesterdays date to pass into the URL
+  const today = new Date();
+  const yesterday = new Date(today); // Data in the API is current through the previous day
+  yesterday.setDate(yesterday.getDate() - 1);
+  let date = yesterday.getFullYear() + "-" + (yesterday.getMonth() + 1) + "-" + yesterday.getDate();
+
+  // Fetch the data
+  fetch("https://covidtrackerapi.bsg.ox.ac.uk/api/v2/stringency/actions/usa/" + date)
+    .then(function (response) {
+      if (response.status !== 200) {
+        console.log("Looks like there was a problem. Status Code: " + response.status);
+        return;
+      }
+
+      // Examine the text in the response
+      response.json().then(function (data) {
+        const countryDiv = document.getElementById("countryDiv");
+
+        countryDiv.innerHTML = "";
+
+        const totalCasesCol = document.createElement("div");
+        totalCasesCol.className = "col p-2";
+        totalCasesCol.innerHTML =
+          "<h5>Total Cases: </h5>" + data.stringencyData.confirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        countryDiv.append(totalCasesCol);
+
+        const totalDeathsCol = document.createElement("div");
+        totalDeathsCol.className = "col p-2";
+        totalDeathsCol.innerHTML =
+          "<h5>Total Deaths: </h5>" + data.stringencyData.deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        countryDiv.append(totalDeathsCol);
+
+        const newDeathsCol = document.createElement("div");
+        newDeathsCol.className = "col p-2";
+        newDeathsCol.innerHTML =
+          "<h5><a href='https://ourworldindata.org/grapher/covid-stringency-index' target='_blank'>Stringency Level*:</a></h5>" +
+          data.stringencyData.stringency;
+        countryDiv.append(newDeathsCol);
+      });
+    })
+    .catch(function (err) {
+      console.log("Fetch Error :-S", err);
+    });
+}
+
+// Get the data for the world and display it in the accordion
+function showWorldInfo() {
+  fetch("https://covid-api.mmediagroup.fr/v1/cases")
+    .then(function (response) {
+      if (response.status !== 200) {
+        console.log("Looks like there was a problem. Status Code: " + response.status);
+        return;
+      }
+
+      // Examine the text in the response
+      response.json().then(function (data) {
+        console.log("mmediagroup.fr: ", data);
+
+        const worldDiv = document.getElementById("worldDiv");
+
+        worldDiv.innerHTML = "";
+
+        const totalCasesCol = document.createElement("div");
+        totalCasesCol.className = "col p-2";
+        totalCasesCol.innerHTML =
+          "<h5>Total Cases: </h5>" + data.US.All.confirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        worldDiv.append(totalCasesCol);
+
+        const totalDeathsCol = document.createElement("div");
+        totalDeathsCol.className = "col p-2";
+        totalDeathsCol.innerHTML =
+          "<h5>Total Deaths: </h5>" + data.US.All.deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        worldDiv.append(totalDeathsCol);
+
+        worldDiv.style = "height: 110px;";
       });
     })
     .catch(function (err) {
@@ -417,14 +465,6 @@ function drawChart() {
   chart.draw(data, options);
 }
 
-// // Filter https://data.cdc.gov/resource/9mfq-cb36.json by state
-// function filterCDCByState(obj) {
-//   const selectedState = document.getElementById("states-dropdown").value;
-//   const filteredObject = obj.filter((d) => d.state == selectedState);
-
-//   return filteredObject;
-// }
-
 // Graph Data Points
 function getGraphData() {
   // Add selectedState variable
@@ -447,22 +487,10 @@ function getGraphData() {
 
 // Populate graph div id = curve_chart with new cases from for loop
 
-// // Default call to mmediagroup.fr returns world data if we need it
-// function callMmediaGroup() {
-//   fetch("https://covid-api.mmediagroup.fr/v1/cases")
-//     .then(function (response) {
-//       if (response.status !== 200) {
-//         console.log("Looks like there was a problem. Status Code: " + response.status);
-//         return;
-//       }
+// // Filter https://data.cdc.gov/resource/9mfq-cb36.json by state
+// function filterCDCByState(obj) {
+//   const selectedState = document.getElementById("states-dropdown").value;
+//   const filteredObject = obj.filter((d) => d.state == selectedState);
 
-//       // Examine the text in the response
-//       response.json().then(function (data) {
-//         console.log("mmediagroup.fr: ", data);
-//         callOxford();
-//       });
-//     })
-//     .catch(function (err) {
-//       console.log("Fetch Error :-S", err);
-//     });
+//   return filteredObject;
 // }

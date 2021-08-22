@@ -55,7 +55,8 @@
                 <option selected>Please choose a country or state</option>
               </select>
             </div> -->
-        <button class="btn btn-warning mb-3" onclick="showStateInfo(), showUSInfo(), showPolicyInfo()">Get Info</button>
+        <button class="btn btn-warning mb-3"
+          onclick="showStateInfo(), showUSInfo(), showWorldInfo(), showPolicyInfo() ">Get Info</button>
       </div>
 
       <div class="col grow flex-absolute-center">
@@ -76,6 +77,10 @@
             <h3>U.S. Cases</h3>
             <div class="row" id="countryDiv">
               <!-- US info inserted dynamically here -->
+            </div>
+            <h3>World Cases</h3>
+            <div class="row" id="worldDiv">
+              <!-- World info inserted dynamically here -->
             </div>
             <h3>U.S. Policies</h3>
             <div class="row" id="policyDiv">
