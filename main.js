@@ -472,7 +472,7 @@ const states = [
   },
 ];
 
-//Function to build chart
+//Function to build chart use graphData to populate
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
     ["Date", "Positives"],
@@ -496,6 +496,7 @@ function drawChart() {
 function getGraphData() {
   // Add selectedState variable
   const selectedState = document.getElementById("states-dropdown").value;
+  //getElementByID for dates w/ slider
 
   let getDataByStateAndDate = $.ajax({
     // Get an array of object by state from CDC API - Hardcode dates on presentation day
@@ -509,6 +510,7 @@ function getGraphData() {
   }).done(function (obj) {
     console.log("CDC: ", obj);
     // Use id "new_cases" to create an array of "new_case" with for loop
+    var graphData = obj.keys(json[new_cases]);
   });
 }
 
