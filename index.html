@@ -5,21 +5,17 @@
   <meta charset="UTF-8" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
   <link rel="stylesheet" href="./style.css" />
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="./main.js"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
     google.charts.load("current", { packages: ["corechart"] });
-    google.charts.setOnLoadCallback(drawChart);
   </script>
   <title>Covid 19</title>
 </head>
@@ -32,39 +28,30 @@
       </div>
     </div>
     <div class="row pb-5">
-      <div class="col grow flex-absolute-center">
-        <iframe src="https://covid-19.dataflowkit.com/assets/widget/covid-19.html" frameborder="0" scrolling="no"
-          width="250" height="250">
-        </iframe>
+      <div class="col-3 grow flex-absolute-center">
+        <!-- <iframe src="https://covid-19.dataflowkit.com/assets/widget/covid-19.html" frameborder="0" scrolling="no" width="250" height="250">
+        </iframe> -->
       </div>
-      <div class="col mt-5 bg-primary text-white">
+      <div class="col-6 mt-5 bg-primary text-white">
         <h4 class="m-5">Choose A State For More Information</h4>
-        <!-- <div class="mb-3">
-              <select class="form-select" id="country-dropdown" aria-label="Default select example">
-                <option selected>Choose a Country</option>
-              </select>
-            </div> -->
         <div class="mb-5">
           <select class="form-select" id="states-dropdown" aria-label="Default select example">
             <option selected>Choose a State</option>
           </select>
         </div>
-        <!-- <div class="mb-4">
-              <label class="form-label" for="password">Type of Information</label>
-              <select class="form-select" aria-label="Default select example">
-                <option selected>Please choose a country or state</option>
-              </select>
-            </div> -->
-        <button class="btn btn-warning mb-3"
-          onclick="showStateInfo(), showUSInfo(), showWorldInfo(), showPolicyInfo() ">Get Info</button>
+
+        <button class="btn btn-warning mb-3" onclick="showStateInfo(), showUSInfo(), showWorldInfo(), showPolicyInfo(), getGraphData() ">Get Info</button>
       </div>
 
-      <div class="col grow flex-absolute-center">
-        <iframe class="" src="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/vaccine-finder-widget.html"
-          scrolling="no" height="230" frameborder="0" width="280" frameborder="0" title="Vaccine Finder Widget"
-          style="overflow: hidden">
-        </iframe>
+      <div class="col-3 grow flex-absolute-center">
+        <!-- <iframe style="height:440px; width:260px; border:0;" scrolling="no" src="https://oig.hhs.gov/newsroom/widgets/2020/covid-wp.html"></iframe> -->
       </div>
+    </div>
+    <div class="row" id="chartDiv" hidden>
+      <div class="col-lg-3 col-md-2 col-sm-0"></div>
+      <div class="col-lg-6 col-md-8 col-sm-12" id="curve_chart" style="height: 400px;">
+      </div>
+      <div class="col-lg-3 col-md-2 col-sm-0"></div>
     </div>
     <div class="row " id="accordion-row" hidden>
       <div class="flex pt-5 pb-5">
@@ -98,8 +85,7 @@
                     public transportation.</li>
                   <li>After Travel: Self-monitor for COVID-19 symptoms; isolate and get tested if you develop symptoms.
                   </li>
-                  <li>Further Information available at the<a
-                      href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/index.html" target="_blank"> CDC
+                  <li>Further Information available at the<a href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/index.html" target="_blank"> CDC
                       Travel Website.</a></li>
                 </ul>
               </div>
@@ -109,17 +95,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="col" id="curve_chart" style="width: 900px; height: 500px">
-      </div>
+
     </div>
     <div class="row pb-5 flex pt-5">
       <div class="col">
-        <iframe src="https://public.domo.com/cards/YE040" width="450" height="400" marginheight="0" marginwidth="0"
-          frameborder="0"></iframe>
+        <iframe src="https://public.domo.com/cards/YE040" width="400px" height="320px" marginheight="0" marginwidth="0" frameborder="0"></iframe>
       </div>
       <div class="col">
-        <iframe src="https://public.domo.com/cards/31O7r" width="450" height="400" marginheight="0" marginwidth="0"
-          frameborder="0"></iframe>
+        <iframe src="https://public.domo.com/cards/31O7r" width="400px" height="320px" marginheight="0" marginwidth="0" frameborder="0"></iframe>
       </div>
     </div>
   </div>

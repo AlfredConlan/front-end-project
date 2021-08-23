@@ -88,11 +88,6 @@ function showStateInfo() {
         // unhide the accordian
         const accordianRow = document.getElementById("accordion-row");
         accordianRow.hidden = false;
-
-        // resize sections afer unhiding
-        stateDiv.style = "height: 110px;";
-        countryDiv.style = "height: 110px;";
-        travelDiv.style = "height: 260px;";
       });
     })
     .catch(function (err) {
@@ -190,8 +185,6 @@ function showWorldInfo() {
         totalDeathsCol.innerHTML =
           "<h5>Total Deaths: </h5>" + sumOfDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         worldDiv.append(totalDeathsCol);
-
-        worldDiv.style = "height: 110px;";
       });
     })
     .catch(function (err) {
@@ -233,8 +226,6 @@ function showPolicyInfo() {
             data.policyActions[i].policy_value_display_field;
           policyDiv.append(descriptionCol);
         }
-
-        policyDiv.style = "height: 500px;";
       });
     })
     .catch(function (err) {
@@ -264,8 +255,63 @@ function filterCDCByLatestDate(obj) {
 
 //Function for jQueryUI Accordian Menu
 $(function () {
-  $("#accordion").accordion();
+  $("#accordion").accordion({
+    active: 0,
+    heightStyle: "content",
+  });
 });
+
+//Function to build chart use graphData to populate
+function drawChart(chartData) {
+  var data = google.visualization.arrayToDataTable(chartData);
+
+  var options = {
+    title: "COVID Positive Tests",
+    legend: { position: "bottom" },
+  };
+
+  var chart = new google.visualization.LineChart(document.getElementById("curve_chart"));
+
+  chart.draw(data, options);
+}
+
+// Graph Data Points
+function getGraphData() {
+  // unhide the chart
+  const chart = document.getElementById("chartDiv");
+  chart.hidden = false;
+
+  // Add selectedState variable
+  const selectedState = document.getElementById("states-dropdown").value;
+  //getElementByID for dates w/ slider
+
+  let getDataByStateAndDate = $.ajax({
+    // Get an array of object by state from CDC API - Hardcode dates on presentation day
+    url:
+      "https://data.cdc.gov/resource/9mfq-cb36.json?state=" +
+      selectedState +
+      "&$where=submission_date%20between%20%272021-05-10T12:00:00%27%20and%20%272021-08-19T14:00:00%27",
+    contentType: "application/json",
+    dataType: "json",
+    success: function (result) {},
+  }).done(function (obj) {
+    // Use id "new_cases" to create an array of "new_case" with for loop
+
+    let newCaseArray = [];
+    // Add cases to the array
+    for (let i = 0; i < obj.length; i++) {
+      newCaseArray.push([obj[i].submission_date.substring(0, 10), parseInt(obj[i].new_case, 10)]);
+    }
+
+    // Sort by date
+    newCaseArray.sort();
+
+    // Add column headers
+    newCaseArray.unshift(["Date", "Number Of Cases"]);
+
+    drawChart(newCaseArray);
+  });
+}
 
 // List of states
 const states = [
@@ -471,55 +517,3 @@ const states = [
     id: "WY",
   },
 ];
-
-//Function to build chart use graphData to populate
-function drawChart() {
-  var data = google.visualization.arrayToDataTable([
-    ["Date", "Positives"],
-    ["1", 1000],
-    ["2", 1170],
-    ["3", 660],
-    ["4", 1030],
-  ]);
-
-  var options = {
-    title: "COVID Positive Tests",
-    legend: { position: "bottom" },
-  };
-
-  var chart = new google.visualization.LineChart(document.getElementById("curve_chart"));
-
-  chart.draw(data, options);
-}
-
-// Graph Data Points
-function getGraphData() {
-  // Add selectedState variable
-  const selectedState = document.getElementById("states-dropdown").value;
-  //getElementByID for dates w/ slider
-
-  let getDataByStateAndDate = $.ajax({
-    // Get an array of object by state from CDC API - Hardcode dates on presentation day
-    url:
-      "https://data.cdc.gov/resource/9mfq-cb36.json?state=" +
-      selectedState +
-      "&$where=submission_date%20between%20%272021-08-10T12:00:00%27%20and%20%272021-08-19T14:00:00%27",
-    contentType: "application/json",
-    dataType: "json",
-    success: function (result) {},
-  }).done(function (obj) {
-    console.log("CDC: ", obj);
-    // Use id "new_cases" to create an array of "new_case" with for loop
-    var graphData = obj.keys(json[new_cases]);
-  });
-}
-
-// Populate graph div id = curve_chart with new cases from for loop
-
-// // Filter https://data.cdc.gov/resource/9mfq-cb36.json by state
-// function filterCDCByState(obj) {
-//   const selectedState = document.getElementById("states-dropdown").value;
-//   const filteredObject = obj.filter((d) => d.state == selectedState);
-
-//   return filteredObject;
-// }
