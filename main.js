@@ -329,7 +329,7 @@ const states = [
   },
 ];
 
-//Function to build chart
+//Function to build chart use graphData to populate
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
     ['Date', 'Positives'],
@@ -401,17 +401,18 @@ function drawChart() {
 function getGraphData() {
   // Add selectedState variable
   const selectedState = document.getElementById("states-dropdown").value;
+  //getElementByID for dates w/ slider
 
   let getDataByStateAndDate = $.ajax({
     // Get an array of object by state from CDC API - Hardcode dates on presentation day
-    url: "https://data.cdc.gov/resource/9mfq-cb36.json?state=" + selectedState + "&$where=submission_date%20between%20%272021-08-10T12:00:00%27%20and%20%272021-08-19T14:00:00%27",
+    url: "https://data.cdc.gov/resource/9mfq-cb36.json?state=" + selectedState + "&$where=submission_date%20between%20%272021-08-10T12:00:00%27%20and%20%272021-08-22T14:00:00%27",
     contentType: "application/json",
     dataType: "json",
     success: function (result) {},
   }).done(function (obj) {
     console.log("CDC: ", obj);
     // Use id "new_cases" to create an array of "new_case" with for loop
+    var graphData = obj.keys(json[new_cases]);
   })
 }
-
 // Populate graph div id = curve_chart with new cases from for loop
