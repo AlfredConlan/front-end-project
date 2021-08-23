@@ -5,6 +5,7 @@ function populateStatesDropDown() {
     const countries = document.getElementById("states-dropdown");
     const optionTag = document.createElement("option");
 
+    // Create the option tags
     optionTag.value = states[i].id;
     optionTag.className = "state-list";
     optionTag.innerText = states[i].name;
@@ -17,7 +18,7 @@ function showStateInfo() {
   const selectedState = document.getElementById("states-dropdown").value;
 
   fetch("https://data.cdc.gov/resource/9mfq-cb36.json?state=" + selectedState, {
-    // After a number of calls, CDC was requesting header data
+    // After a certain number of calls in a given time period, CDC was requesting header data
 
     method: "GET", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, *cors, same-origin
@@ -36,14 +37,18 @@ function showStateInfo() {
 
       // Examine the text in the response
       response.json().then(function (data) {
+        // Filter to only show the latest date
         let filteredByLatestDate = filterCDCByLatestDate(data);
 
+        // Get the divs
         const stateDiv = document.getElementById("stateDiv");
         const countryDiv = document.getElementById("countryDiv");
         const travelDiv = document.getElementById("travelDiv");
 
+        // Clear the state info
         stateDiv.innerHTML = "";
 
+        // Display the new info
         const stateCol = document.createElement("div");
         stateCol.className = "col p-2";
         stateCol.innerHTML = "<h5>State: </h5>" + filteredByLatestDate[0].state;
@@ -84,7 +89,7 @@ function showStateInfo() {
         const accordianRow = document.getElementById("accordion-row");
         accordianRow.hidden = false;
 
-        // resize sections afer showing
+        // resize sections afer unhiding
         stateDiv.style = "height: 110px;";
         countryDiv.style = "height: 110px;";
         travelDiv.style = "height: 260px;";
@@ -97,7 +102,7 @@ function showStateInfo() {
 
 // Get the data for the country and display it in the accordion
 function showUSInfo() {
-  // Get yesterdays date to pass into the URL
+  // Get yesterdays date to pass into the URL. Todays values in the api will still be null
   const today = new Date();
   const yesterday = new Date(today); // Data in the API is current through the previous day
   yesterday.setDate(yesterday.getDate() - 1);
@@ -113,10 +118,13 @@ function showUSInfo() {
 
       // Examine the text in the response
       response.json().then(function (data) {
+        // Get the divs
         const countryDiv = document.getElementById("countryDiv");
 
+        // Clear the country info
         countryDiv.innerHTML = "";
 
+        // Display the new info
         const totalCasesCol = document.createElement("div");
         totalCasesCol.className = "col p-2";
         totalCasesCol.innerHTML =
@@ -153,8 +161,10 @@ function showWorldInfo() {
 
       // Examine the text in the response
       response.json().then(function (data) {
+        // Get the divs
         const worldDiv = document.getElementById("worldDiv");
 
+        // Clear the world info
         worldDiv.innerHTML = "";
 
         // Convert the data to an array
@@ -163,12 +173,12 @@ function showWorldInfo() {
         // Add up the values
         let sumOfCases = 0;
         let sumOfDeaths = 0;
-
         for (let i = 0; i < values.length; i++) {
           sumOfCases = sumOfCases + values[i].All.confirmed;
           sumOfDeaths = sumOfDeaths + values[i].All.deaths;
         }
 
+        // Display the new info
         const totalCasesCol = document.createElement("div");
         totalCasesCol.className = "col p-2";
         totalCasesCol.innerHTML =
@@ -190,7 +200,7 @@ function showWorldInfo() {
 }
 
 function showPolicyInfo() {
-  // Get yesterdays date to pass into the URL
+  // Get yesterdays date to pass into the URL. Todays values in the api will still be null
   const today = new Date();
   const yesterday = new Date(today); // Data in the API is current through the previous day
   yesterday.setDate(yesterday.getDate() - 8);
@@ -206,10 +216,13 @@ function showPolicyInfo() {
 
       // Examine the text in the response
       response.json().then(function (data) {
+        // Get the divs
         const policyDiv = document.getElementById("policyDiv");
 
+        // Clear the policy info
         policyDiv.innerHTML = "";
 
+        // Display the new info
         for (let i = 0; i < data.policyActions.length; i++) {
           const descriptionCol = document.createElement("div");
           descriptionCol.className = " m-auto w-50 text-start p-2";
@@ -232,6 +245,8 @@ function showPolicyInfo() {
 // Filter https://data.cdc.gov/resource/9mfq-cb36.json by latest date
 function filterCDCByLatestDate(obj) {
   let latestDate = 0;
+
+  // Loop through the data and find out the latest date
   for (let i = 0; i < obj.length; i++) {
     let currentDate = parseInt(obj[i].submission_date.substring(0, 10).replace(/-/g, ""), 10);
 
@@ -239,6 +254,8 @@ function filterCDCByLatestDate(obj) {
       latestDate = currentDate;
     }
   }
+
+  // Filter the data to only show info for the latest date
   const filteredObject = obj.filter(
     (d) => parseInt(d.submission_date.substring(0, 10).replace(/-/g, ""), 10) == latestDate
   );
