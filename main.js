@@ -313,6 +313,21 @@ function getGraphData() {
   });
 }
 
+//Dark Mode Stuff
+function darkMode() {
+  var element = document.body;
+  element.classList.toggle("dark-mode");
+}
+
+// //Background Dark Mode Switch
+// function backgroundChange() {
+//   if (document.getElementById("bodyTag").style.backgroundImage == "url(./assets/imgs/backgroundDark.jpg)") {
+//     console.log("TRUE");
+
+//     document.getElementById("bodyTag").style.backgroundImage = "url(./assets/imgs/background-lab.jpg)";
+//   } else document.getElementById("bodyTag").style.backgroundImage = "url(./assets/imgs/backgroundDark.jpg)";
+// }
+
 // List of states
 const states = [
   {
@@ -517,9 +532,3 @@ const states = [
     id: "WY",
   },
 ];
-
-//Dark Mode Stuff
-function darkMode () {
-  var element = document.body;
-  element.classList.toggle("dark-mode");
-}
