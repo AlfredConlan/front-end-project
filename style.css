@@ -9,13 +9,6 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 
-  /* background: #1488CC; */
-  /* fallback for old browsers */
-  /* background: -webkit-linear-gradient(to right, #2B32B2, #1488CC); */
-  /* Chrome 10-25, Safari 5.1-6 */
-  /* background: linear-gradient(to right, #2B32B2, #1488CC); */
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  /* Set a specific height */
 }
 
 h1 {
@@ -35,23 +28,12 @@ h1 {
 }
 
 .grow {
-  padding: 50px;
   transition: all 0.2s ease-in-out;
   margin: 10 auto;
 }
 
 .grow:hover {
   transform: scale(1.05);
-}
-
-.flex {
-  display: flex;
-}
-
-.flex-absolute-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 /* Used for testing */
