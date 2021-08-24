@@ -52,8 +52,6 @@ h1 {
   border-style: solid;
   opacity: 0.95;
 }
-
-.dark-mode .body {
-  filter: brightness(50%);
+.dark-mode .accordion {
+  font-style: white;
 }
-
