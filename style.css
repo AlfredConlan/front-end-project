@@ -1,48 +1,59 @@
-
 body {
-    background: #1488CC;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2B32B2, #1488CC);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #2B32B2, #1488CC);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
+  background-image: url("./assets/imgs/background-lab.jpg");
+
+  min-height: 500px;
+
+  /* Create a parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
 }
 
 h1 {
-    font-family: Tahoma, Verdana, sans-serif;
-    font-style: bold;
-    font-size: 80px;
-    color: rgb(39, 37, 37);
-
+  font-family: Tahoma, Verdana, sans-serif;
+  font-style: bold;
+  font-size: 80px;
+  color: rgb(39, 37, 37);
 }
 
 .row {
-    background-color: #b8c6db;
-    background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
+  background-color: #b8c6db;
+  background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
+  opacity: 0.95;
 }
 
-
-
-
 .grow {
-    padding: 50px;
-    transition: all .2s ease-in-out;
-    margin: 10 auto;
-    
+  transition: all 0.2s ease-in-out;
+  margin: 10 auto;
 }
 
 .grow:hover {
-    transform: scale(1.1);
+  transform: scale(1.05);
 }
 
-.flex {
-    display: flex;
+/* Used for testing */
+.show-borders {
+  border-color: red;
+  border-style: solid;
+  border-width: 2px;
 }
 
-.flex-absolute-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/*Dark Mode Code*/
+.dark-mode .row {
+  background-color: #2e2f30;
+  background-image: linear-gradient(315deg, #2e2f30 0%, #15181b 74%);
+  border-color: gray;
+  border-width: 1px;
+  border-style: solid;
+  opacity: 0.95;
 }
+
+.dark-mode .body {
+  filter: brightness(50%);
+}
+
