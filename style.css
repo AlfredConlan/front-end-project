@@ -60,3 +60,17 @@ h1 {
   border-style: solid;
   border-width: 2px;
 }
+
+/*Dark Mode Code*/
+.dark-mode .row {
+  background-color: #2e2f30;
+  background-image: linear-gradient(315deg, #2e2f30 0%, #15181b 74%);
+  border-color: gray;
+  border-width: 1px;
+  border-style: solid;
+  opacity: 0.95;
+}
+
+.dark-mode .body {
+  filter: brightness(50%);
+}
