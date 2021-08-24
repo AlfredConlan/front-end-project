@@ -517,3 +517,9 @@ const states = [
     id: "WY",
   },
 ];
+
+//Dark Mode Stuff
+function darkMode () {
+  var element = document.body;
+  element.classList.toggle("dark-mode");
+}
