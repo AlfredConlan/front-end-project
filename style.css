@@ -52,6 +52,23 @@ h1 {
   border-style: solid;
   opacity: 0.95;
 }
-.dark-mode .accordion {
-  font-style: white;
+
+.dark-mode #stateDiv {
+  color: white;
 }
+.dark-mode #countryDiv {
+  color: white;
+}
+.dark-mode #worldDiv {
+  color: white;
+}
+.dark-mode #policyDiv {
+  color: white;
+}
+.dark-mode #travelDiv {
+  color: white;
+}
+html .dark-mode {
+  background-image: url("./assets/imgs/backgroundDark.jpg");
+}
+
