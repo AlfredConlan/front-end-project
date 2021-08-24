@@ -11,19 +11,34 @@
 </head>
 
 <body>
-    <video autoplay muted loop id="myVideo">
-        <source src="./assets/imgs/COVID19_Full.mp4" type="video/mp4">
-    </video>
+    <div class="container">
+        <div class="row-3 ">
+            <video autoplay muted loop id="myVideo">
+                <source src="./assets/imgs/COVID19_Full.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
     <div class="content">
         <div class="container-fluid" id="banner">
-            COVID Information Portal
+            Do you know what's going on with Covid?
         </div>
         <div class="container">
             <div class="row">
-                <div class="col">
-                    <a href="main.html"><img src=https://upload.wikimedia.org/wikipedia/commons/8/82/SARS-CoV-2_without_background.png height="100" width="auto" id="virus"></a>
-                    <a href="splash2.html"><img src="assets/imgs/Daco_4933495.png" height="100" width="auto" id="exit"></a>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-4">
+                    <a class="btn btn-lg btn-warning m-2  h-75" href="main.html" role="button">
+                        <img src=https://upload.wikimedia.org/wikipedia/commons/8/82/SARS-CoV-2_without_background.png height="35" width="auto" id="virus">
+
+                    </a>
                 </div>
+                <div class="col-lg-4">
+                    <a class="btn btn-lg btn-danger m-2  h-75" href="splash2.html" role="button">
+                        <img src="assets/imgs/Daco_4933495.png" height="35" width="auto" id="exit"> </a>
+                </div>
+                <!-- <a href="main.html"><img src=https://upload.wikimedia.org/wikipedia/commons/8/82/SARS-CoV-2_without_background.png height="100" width="auto" id="virus"></a>
+                    <a href="splash2.html"><img src="assets/imgs/Daco_4933495.png" height="100" width="auto" id="exit"></a> -->
+                <div class="col-lg-2"></div>
             </div>
         </div>
     </div>
