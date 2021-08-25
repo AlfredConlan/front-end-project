@@ -34,12 +34,12 @@
       <div class="col-6 mt-5 mb-5 bg-primary text-white">
         <p class="h4 mt-5 mb-5">Choose A State for More Information</p>
         <div class="mb-5">
-          <select class="form-select" id="states-dropdown" aria-label="Default select example">
+          <select onclick="enableGetInfoButton()" class="form-select" id="states-dropdown" aria-label="Default select example">
             <option selected>Choose a State</option>
           </select>
         </div>
 
-        <button class="btn btn-warning mb-3" onclick="showStateInfo(), showUSInfo(), showWorldInfo(), showPolicyInfo(), getGraphData() ">Get Info</button>
+        <button id="getInfoButton" class="btn btn-warning mb-3" disabled onclick="showStateInfo(), showUSInfo(), showWorldInfo(), showPolicyInfo(), getGraphData() ">Get Info</button>
       </div>
 
       <div class="col-3 grow ">

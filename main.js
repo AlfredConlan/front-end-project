@@ -13,6 +13,14 @@ function populateStatesDropDown() {
   }
 }
 
+// When the user selects a state, enable the Get Info button
+function enableGetInfoButton() {
+  console.log("EnableGetButton fired");
+  const getInfoButton = document.getElementById("getInfoButton");
+
+  getInfoButton.disabled = false;
+}
+
 // Get the data for the state and display it in the accordion
 function showStateInfo() {
   const selectedState = document.getElementById("states-dropdown").value;
