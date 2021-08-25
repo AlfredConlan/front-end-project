@@ -317,15 +317,15 @@ function getGraphData() {
 function darkMode() {
   var element = document.body;
   element.classList.toggle("dark-mode");
-}
 
-//Background Dark Mode Switch
-function backgroundChange() {
-  if (document.getElementById("bodyTag").style.backgroundImage == "url(./assets/imgs/backgroundDark.jpg)") {
-    console.log("TRUE");
+  // Change the button text
+  let darkButton = document.getElementById("darkButton");
 
-    document.getElementById("bodyTag").style.backgroundImage = "url(./assets/imgs/background-lab.jpg)";
-  } else document.getElementById("bodyTag").style.backgroundImage = "url(./assets/imgs/backgroundDark.jpg)";
+  if (darkButton.innerText == "Switch To Light Mode") {
+    darkButton.innerText = "Switch To Dark Mode";
+  } else {
+    darkButton.innerText = "Switch To Light Mode";
+  }
 }
 
 // List of states
