@@ -30,7 +30,3 @@ Timothy Johns
 Eric Fricke
 
 Al Conlan
-<<<<<<< HEAD
-=======
-
->>>>>>> 553c047b9d38fd23c21f7d8695ab9610a7ef557f
