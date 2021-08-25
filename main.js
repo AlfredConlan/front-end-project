@@ -328,6 +328,10 @@ function darkMode() {
   }
 }
 
+$(window).resize(function () {
+  getGraphData();
+});
+
 // List of states
 const states = [
   {
