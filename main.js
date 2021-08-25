@@ -336,6 +336,7 @@ function darkMode() {
   }
 }
 
+// Resize google chart when window size changes
 $(window).resize(function () {
   getGraphData();
 });
