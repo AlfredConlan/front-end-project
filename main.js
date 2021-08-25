@@ -15,7 +15,6 @@ function populateStatesDropDown() {
 
 // When the user selects a state, enable the Get Info button
 function enableGetInfoButton() {
-  console.log("EnableGetButton fired");
   const getInfoButton = document.getElementById("getInfoButton");
 
   getInfoButton.disabled = false;
@@ -406,7 +405,7 @@ const states = [
   },
   {
     name: "Kansas",
-    id: "KA",
+    id: "KS",
   },
   {
     name: "Kentucky",
