@@ -63,8 +63,7 @@ function showStateInfo() {
 
         const totalCasesCol = document.createElement("div");
         totalCasesCol.className = "col p-2";
-        totalCasesCol.innerHTML =
-          "<h5>Total Cases: </h5>" + filteredByLatestDate[0].tot_cases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        totalCasesCol.innerHTML = "<h5>Total Cases: </h5>" + filteredByLatestDate[0].tot_cases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         stateDiv.append(totalCasesCol);
 
         const newCasesCol = document.createElement("div");
@@ -78,9 +77,7 @@ function showStateInfo() {
 
         const totalDeathsCol = document.createElement("div");
         totalDeathsCol.className = "col p-2";
-        totalDeathsCol.innerHTML =
-          "<h5>Total Deaths: </h5>" +
-          filteredByLatestDate[0].tot_death.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        totalDeathsCol.innerHTML = "<h5>Total Deaths: </h5>" + filteredByLatestDate[0].tot_death.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         stateDiv.append(totalDeathsCol);
 
         const newDeathsCol = document.createElement("div");
@@ -129,21 +126,18 @@ function showUSInfo() {
         // Display the new info
         const totalCasesCol = document.createElement("div");
         totalCasesCol.className = "col p-2";
-        totalCasesCol.innerHTML =
-          "<h5>Total Cases: </h5>" + data.stringencyData.confirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        totalCasesCol.innerHTML = "<h5>Total Cases: </h5>" + data.stringencyData.confirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         countryDiv.append(totalCasesCol);
 
         const totalDeathsCol = document.createElement("div");
         totalDeathsCol.className = "col p-2";
-        totalDeathsCol.innerHTML =
-          "<h5>Total Deaths: </h5>" + data.stringencyData.deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        totalDeathsCol.innerHTML = "<h5>Total Deaths: </h5>" + data.stringencyData.deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         countryDiv.append(totalDeathsCol);
 
         const newDeathsCol = document.createElement("div");
         newDeathsCol.className = "col p-2";
         newDeathsCol.innerHTML =
-          "<h5><a href='https://ourworldindata.org/grapher/covid-stringency-index' target='_blank'>Stringency Level*:</a></h5>" +
-          data.stringencyData.stringency;
+          "<h5><a href='https://ourworldindata.org/grapher/covid-stringency-index' target='_blank'>Stringency Level*:</a></h5>" + data.stringencyData.stringency;
         countryDiv.append(newDeathsCol);
       });
     })
@@ -183,14 +177,12 @@ function showWorldInfo() {
         // Display the new info
         const totalCasesCol = document.createElement("div");
         totalCasesCol.className = "col p-2";
-        totalCasesCol.innerHTML =
-          "<h5>Total Cases: </h5>" + sumOfCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        totalCasesCol.innerHTML = "<h5>Total Cases: </h5>" + sumOfCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         worldDiv.append(totalCasesCol);
 
         const totalDeathsCol = document.createElement("div");
         totalDeathsCol.className = "col p-2";
-        totalDeathsCol.innerHTML =
-          "<h5>Total Deaths: </h5>" + sumOfDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        totalDeathsCol.innerHTML = "<h5>Total Deaths: </h5>" + sumOfDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         worldDiv.append(totalDeathsCol);
       });
     })
@@ -203,7 +195,7 @@ function showPolicyInfo() {
   // Get yesterdays date to pass into the URL. Todays values in the api will still be null
   const today = new Date();
   const yesterday = new Date(today); // Data in the API is current through the previous day
-  yesterday.setDate(yesterday.getDate() - 8);
+  yesterday.setDate(yesterday.getDate() - 10);
   let date = yesterday.getFullYear() + "-" + (yesterday.getMonth() + 1) + "-" + yesterday.getDate();
 
   // Fetch the data
@@ -226,11 +218,7 @@ function showPolicyInfo() {
         for (let i = 0; i < data.policyActions.length; i++) {
           const descriptionCol = document.createElement("div");
           descriptionCol.className = " m-auto w-50 text-start p-2";
-          descriptionCol.innerHTML =
-            "<b>" +
-            data.policyActions[i].policy_type_display +
-            ": </b>" +
-            data.policyActions[i].policy_value_display_field;
+          descriptionCol.innerHTML = "<b>" + data.policyActions[i].policy_type_display + ": </b>" + data.policyActions[i].policy_value_display_field;
           policyDiv.append(descriptionCol);
         }
       });
@@ -254,9 +242,7 @@ function filterCDCByLatestDate(obj) {
   }
 
   // Filter the data to only show info for the latest date
-  const filteredObject = obj.filter(
-    (d) => parseInt(d.submission_date.substring(0, 10).replace(/-/g, ""), 10) == latestDate
-  );
+  const filteredObject = obj.filter((d) => parseInt(d.submission_date.substring(0, 10).replace(/-/g, ""), 10) == latestDate);
   return filteredObject;
 }
 
@@ -294,10 +280,7 @@ function getGraphData() {
 
   let getDataByStateAndDate = $.ajax({
     // Get an array of object by state from CDC API - Hardcode dates on presentation day
-    url:
-      "https://data.cdc.gov/resource/9mfq-cb36.json?state=" +
-      selectedState +
-      "&$where=submission_date%20between%20%272021-05-10T12:00:00%27%20and%20%272021-08-19T14:00:00%27",
+    url: "https://data.cdc.gov/resource/9mfq-cb36.json?state=" + selectedState + "&$where=submission_date%20between%20%272021-05-10T12:00:00%27%20and%20%272021-08-19T14:00:00%27",
     contentType: "application/json",
     dataType: "json",
     success: function (result) {},
