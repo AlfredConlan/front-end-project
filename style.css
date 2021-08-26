@@ -72,3 +72,10 @@ html .dark-mode {
   background-image: url("./assets/imgs/backgroundDark.jpg");
 }
 
+  #vaccinesDiv ul {
+    list-style-type: none;
+    columns: 3;
+    -webkit-columns: 3;
+    -moz-columns: 3;
+    font-size: large;
+  }
