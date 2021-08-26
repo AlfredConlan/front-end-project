@@ -26,15 +26,18 @@ h1 {
   border-style: solid;
   opacity: 0.95;
 }
+/* Vaccine info on accordian menu styling*/
 
-.grow {
-  transition: all 0.2s ease-in-out;
-  margin: 10 auto;
+  ul {
+  list-style-type: none;
+  columns: 3;
+  -webkit-columns: 3;
+  -moz-columns: 3;
+  font-size: x-large;
 }
-
-.grow:hover {
+/*.grow:hover {
   transform: scale(1.05);
-}
+}*/
 
 /* Used for testing */
 .show-borders {
@@ -53,7 +56,21 @@ h1 {
   opacity: 0.95;
 }
 
-.dark-mode .body {
-  filter: brightness(50%);
+.dark-mode #stateDiv {
+  color: white;
 }
-
+.dark-mode #countryDiv {
+  color: white;
+}
+.dark-mode #worldDiv {
+  color: white;
+}
+.dark-mode #policyDiv {
+  color: white;
+}
+.dark-mode #travelDiv {
+  color: white;
+}
+html .dark-mode {
+  background-image: url("./assets/imgs/backgroundDark.jpg");
+}

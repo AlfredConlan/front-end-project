@@ -13,6 +13,13 @@ function populateStatesDropDown() {
   }
 }
 
+// When the user selects a state, enable the Get Info button
+function enableGetInfoButton() {
+  const getInfoButton = document.getElementById("getInfoButton");
+
+  getInfoButton.disabled = false;
+}
+
 // Get the data for the state and display it in the accordion
 function showStateInfo() {
   const selectedState = document.getElementById("states-dropdown").value;
@@ -44,6 +51,8 @@ function showStateInfo() {
         const stateDiv = document.getElementById("stateDiv");
         const countryDiv = document.getElementById("countryDiv");
         const travelDiv = document.getElementById("travelDiv");
+        
+
 
         // Clear the state info
         stateDiv.innerHTML = "";
@@ -109,7 +118,8 @@ function showUSInfo() {
       if (response.status !== 200) {
         console.log("Looks like there was a problem. Status Code: " + response.status);
         return;
-      
+      }
+
       // Examine the text in the response
       response.json().then(function (data) {
         // Get the divs
@@ -312,6 +322,26 @@ function getGraphData() {
   });
 }
 
+//Dark Mode Stuff
+function darkMode() {
+  var element = document.body;
+  element.classList.toggle("dark-mode");
+
+  // Change the button text
+  let darkButton = document.getElementById("darkButton");
+
+  if (darkButton.innerText == "Switch To Light Mode") {
+    darkButton.innerText = "Switch To Dark Mode";
+  } else {
+    darkButton.innerText = "Switch To Light Mode";
+  }
+}
+
+// Resize google chart when window size changes
+$(window).resize(function () {
+  getGraphData();
+});
+
 // List of states
 const states = [
   {
@@ -377,7 +407,7 @@ const states = [
   },
   {
     name: "Kansas",
-    id: "KA",
+    id: "KS",
   },
   {
     name: "Kentucky",

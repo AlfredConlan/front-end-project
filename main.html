@@ -19,7 +19,7 @@
   <title>Covid 19</title>
 </head>
 
-<body onload="populateStatesDropDown()">
+<body id="bodyTag" onload="populateStatesDropDown()">
   <div class="container text-center">
     <div class="row mt-3">
       <div class="col p-5 bg-primary text-light">
@@ -34,12 +34,12 @@
       <div class="col-6 mt-5 mb-5 bg-primary text-white">
         <p class="h4 mt-5 mb-5">Choose A State for More Information</p>
         <div class="mb-5">
-          <select class="form-select" id="states-dropdown" aria-label="Default select example">
+          <select onclick="enableGetInfoButton()" class="form-select" id="states-dropdown" aria-label="Default select example">
             <option selected>Choose a State</option>
           </select>
         </div>
 
-        <button class="btn btn-warning mb-3" onclick="showStateInfo(), showUSInfo(), showWorldInfo(), showPolicyInfo(), getGraphData() ">Get Info</button>
+        <button id="getInfoButton" class="btn btn-warning mb-3" disabled onclick="showStateInfo(), showUSInfo(), showWorldInfo(), showPolicyInfo(), getGraphData() ">Get Info</button>
       </div>
 
       <div class="col-3 grow ">
@@ -60,10 +60,6 @@
             <div class="row" id="stateDiv">
               <!-- State info inserted dynamically here -->
             </div>
-            <h3>Testing Locations</h3>
-            <div class="row" id="testdiv">
-            </div>
-            
             <h3>U.S. Cases</h3>
             <div class="row" id="countryDiv">
               <!-- US info inserted dynamically here -->
@@ -71,6 +67,15 @@
             <h3>World Cases</h3>
             <div class="row" id="worldDiv">
               <!-- World info inserted dynamically here -->
+            </div>
+            <h3>Vaccine Information</h3>
+            <div class="row" id="vaccinesDiv">
+              <ul>
+                <li><a href = "https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/Pfizer-BioNTech.html" id = "">Pfizer-BioNTech </a></li>
+                <li><a href = "https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/Moderna.html"> Moderna </a> </li> 
+                <li><a href = "https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/janssen.html"> Johnson & Johnson/ Janssen </a></li>
+              </ul>
+              <!-- Direct Vaccine Information Above -->
             </div>
             <h3>U.S. Policies</h3>
             <div class="row" id="policyDiv">
@@ -97,17 +102,20 @@
         </div>
       </div>
     </div>
-    <div class="row pb-5 pt-5 p-sm-0">
+    <div class="row p-3 p-sm-0">
       <div class="col">
-        <iframe src="https://public.domo.com/cards/YE040" width="360px" height="300px" marginheight="0" marginwidth="0" frameborder="0"></iframe>
+        <iframe src="https://public.domo.com/cards/YE040" width="340px" height="300px" marginheight="0" marginwidth="0" frameborder="0"></iframe>
       </div>
       <div class="col">
-        <iframe src="https://public.domo.com/cards/31O7r" width="360px" height="300px" marginheight="0" marginwidth="0" frameborder="0"></iframe>
+        <iframe src="https://public.domo.com/cards/31O7r" width="340px" height="300px" marginheight="0" marginwidth="0" frameborder="0"></iframe>
       </div>
     </div>
-    <button onclick="darkMode()">Dark Mode</button>
+    <div class="row">
+      <div class="col bg-primary text-lighttext-center p-3">
+        <button onclick="darkMode()" id="darkButton">Switch To Dark Mode</button>
+      </div>
+    </div>
   </div>
-
 </body>
 
 </html>
