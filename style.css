@@ -28,7 +28,7 @@ h1 {
 }
 /* Vaccine info on accordian menu styling*/
 
-  ul {
+  #vaccinesDiv ul {
   list-style-type: none;
   columns: 3;
   -webkit-columns: 3;
