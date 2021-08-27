@@ -16,8 +16,30 @@ function populateStatesDropDown() {
 // When the user selects a state, enable the Get Info button
 function enableGetInfoButton() {
   const getInfoButton = document.getElementById("getInfoButton");
+  const chooseStateOption = document.getElementById("states-dropdown");
+
+  //console.log("State option: " + chooseStateOption.innerText);
+
+  // Remove "Choose a State" as an option so it can't be reselected
+  for (let i = 0; i < chooseStateOption.options.length; i++) {
+    if (chooseStateOption[i].innerText == "Choose a State") {
+      chooseStateOption[i].innerHTML = "";
+    }
+  }
 
   getInfoButton.disabled = false;
+}
+
+// Make sure the user selected a state
+function validateDDOption() {
+  var dropDown = document.getElementById("states-dropdown");
+  var strUser = dropDown.options[dropDown.selectedIndex].value;
+
+  var strUser1 = dropDown.options[dropDown.selectedIndex].text;
+  console.log(strUser);
+  if (strUser == "") {
+    alert("Please select a state");
+  }
 }
 
 // Get the data for the state and display it in the accordion

@@ -29,11 +29,13 @@
 
   <body id="bodyTag" onload="populateStatesDropDown()">
     <div class="container text-center">
+      <!-- Header -->
       <div class="row mt-3">
         <div class="col p-5 bg-primary text-light">
           <p class="h1">Covid As It Stands</p>
         </div>
       </div>
+      <!-- Form -->
       <div class="row">
         <div class="col-3 grow">
           <!-- <iframe src="https://covid-19.dataflowkit.com/assets/widget/covid-19.html" frameborder="0" scrolling="no" width="250" height="250">
@@ -47,7 +49,12 @@
             </select>
           </div>
 
-          <button id="getInfoButton" class="btn btn-warning mb-3" disabled onclick="showStateInfo(), showUSInfo(), showWorldInfo(), showPolicyInfo(), getGraphData() ">
+          <button
+            id="getInfoButton"
+            class="btn btn-warning mb-3"
+            disabled
+            onclick="showStateInfo(), showUSInfo(), showWorldInfo(), showPolicyInfo(), getGraphData(), validateDDOption() "
+          >
             Get Info
           </button>
         </div>
@@ -56,11 +63,13 @@
           <!-- <iframe style="height:440px; width:260px; border:0;" scrolling="no" src="https://oig.hhs.gov/newsroom/widgets/2020/covid-wp.html"></iframe> -->
         </div>
       </div>
+      <!-- Chart -->
       <div class="row" id="chartDiv" hidden>
         <div class="col-lg-3 col-md-2 col-sm-0"></div>
         <div class="col-lg-6 col-md-8 col-sm-12" id="curve_chart" style="height: 400px"></div>
         <div class="col-lg-3 col-md-2 col-sm-0"></div>
       </div>
+      <!-- Accordion -->
       <div class="row" id="accordion-row" hidden>
         <div class="pt-5 pb-5">
           <div class="col-12">
@@ -77,6 +86,13 @@
               <div class="row" id="worldDiv">
                 <!-- World info inserted dynamically here -->
               </div>
+
+              <h3>U.S. Policies</h3>
+              <div class="row" id="policyDiv">
+                <div class="row">
+                  <!-- US policies inserted dynamically here -->
+                </div>
+              </div>
               <h3>Vaccine Info</h3>
               <div class="row" id="vaccinesDiv">
                 <ul>
@@ -84,13 +100,6 @@
                   <li><a href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/Moderna.html" target="_blank"> Moderna </a></li>
                   <li><a href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/janssen.html" target="_blank"> Johnson & Johnson/ Janssen </a></li>
                 </ul>
-                <!-- Direct Vaccine Information Above -->
-              </div>
-              <h3>U.S. Policies</h3>
-              <div class="row" id="policyDiv">
-                <div class="row">
-                  <!-- US policies inserted dynamically here -->
-                </div>
               </div>
               <h3>Travel Advisories</h3>
               <div class="row align-content-center" id="travelDiv">
@@ -100,7 +109,7 @@
                     <li>Delay travel until you are fully vaccinated.</li>
                     <li>Wearing a mask over your nose and mouth is required on planes, buses, trains, and other forms of public transportation.</li>
                     <li>After Travel: Self-monitor for COVID-19 symptoms; isolate and get tested if you develop symptoms.</li>
-                    <li>Further Information available at the<a href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/index.html" target="_blank">CDC Travel Website.</a></li>
+                    <li>Further Information available at the <a href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/index.html" target="_blank">CDC Travel Website.</a></li>
                   </ul>
                 </div>
               </div>
@@ -108,6 +117,7 @@
           </div>
         </div>
       </div>
+      <!-- Widgets -->
       <div class="row p-3 p-sm-0">
         <div class="col">
           <iframe src="https://public.domo.com/cards/YE040" width="340px" height="300px" marginheight="0" marginwidth="0" frameborder="0"></iframe>
@@ -116,6 +126,7 @@
           <iframe src="https://public.domo.com/cards/31O7r" width="340px" height="300px" marginheight="0" marginwidth="0" frameborder="0"></iframe>
         </div>
       </div>
+      <!-- Dark Mode Footer -->
       <div class="row">
         <div class="col bg-primary text-lighttext-center p-3">
           <button onclick="darkMode()" id="darkButton">Switch To Dark Mode</button>

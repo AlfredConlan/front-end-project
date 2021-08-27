@@ -67,10 +67,12 @@ h1 {
 }
 .dark-mode #travelDiv {
   color: white;
+  
 }
 html .dark-mode {
   background-image: url("./assets/imgs/backgroundDark.jpg");
 }
+
 .dark-mode a:link {
   color: white;
 }
