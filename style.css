@@ -26,16 +26,12 @@ h1 {
   border-style: solid;
   opacity: 0.95;
 }
-/* Vaccine info on accordian menu styling*/
 
-  #vaccinesDiv ul {
-  list-style-type: none;
-  columns: 3;
-  -webkit-columns: 3;
-  -moz-columns: 3;
-  font-size: x-large;
+/*.grow {
+  transition: all 0.2s ease-in-out;
+  margin: 10 auto;
 }
-/*.grow:hover {
+.grow:hover {
   transform: scale(1.05);
 }*/
 
@@ -73,6 +69,9 @@ h1 {
 }
 html .dark-mode {
   background-image: url("./assets/imgs/backgroundDark.jpg");
+}
+.dark-mode a:link {
+  color: white;
 }
 
   #vaccinesDiv ul {
