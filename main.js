@@ -217,7 +217,7 @@ function showPolicyInfo() {
   // Get yesterdays date to pass into the URL. Todays values in the api will still be null
   const today = new Date();
   const yesterday = new Date(today); // Data in the API is current through the previous day
-  yesterday.setDate(yesterday.getDate() - 10);
+  yesterday.setDate(yesterday.getDate() - 20);
   let date = yesterday.getFullYear() + "-" + (yesterday.getMonth() + 1) + "-" + yesterday.getDate();
 
   // Fetch the data
