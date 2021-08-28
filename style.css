@@ -77,10 +77,15 @@ html .dark-mode {
   color: white !important;
 }
 
-  #vaccinesDiv ul {
-    list-style-type: none;
-    columns: 3;
-    -webkit-columns: 3;
-    -moz-columns: 3;
-    font-size: large;
-  }
+
+#vaccinesDiv ul {
+  list-style-type: none;
+  columns: 3;
+  -webkit-columns: 3;
+  -moz-columns: 3;
+  font-size: large;
+}
+
+a:hover {
+  color: red !important;
+}
